@@ -53,7 +53,7 @@ function refresh_pokemon_layer() {
   // Add new layer
   map_manager.map.layers.insert(pokemon_layer);
 }
-/ 4. Connect with REST API
+// 4. Connect with REST API
 function refresh_pokemon_data() {
   // Get boundary of current map view
   var bounds = map_manager.map.getBounds();
