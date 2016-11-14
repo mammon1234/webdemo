@@ -2,7 +2,6 @@ var map_manager = {
     "map" : null,
     "map_items" : []
 }
-
 //1 define pokemon data format,create mock pokemon data
 
 map_manager.map_items = [
@@ -19,9 +18,11 @@ function loadMapScenario() {
     });
     add_pokemon_layer();
 }
+
+// 1. Define pokemon data format, create mock pokemon data
 function get_counter_down_time_from_expire_epoch(epoch) {
   var now_time = new Date().getTime() / 1000;
-  var time_left = epoch - now_time;   // unit: second
+  var time_left = epoch / 1000 - now_time;   // unit: second
   var second = Math.floor(time_left % 60);
   var minute = Math.floor(time_left / 60);
   return minute + ":" + second;
@@ -31,14 +32,11 @@ function get_counter_down_time_from_expire_epoch(epoch) {
 function get_pokemon_layer_from_map_items(map_items) {
     var layer = new Microsoft.Maps.Layer();
     var pushpins = []
-    //produce random pushpin
-    //var pushpins = Microsoft.Maps.TestDataGenerator.getPushpins(10, map.getBounds());
     for (var i in map_items) {
       var map_item = map_items[i];
       var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(map_item["latitude"], map_item["longitude"]), 
-                                               { icon: 'images/pushpin_images/pokemon/' + map_item['pokemon_id'] + '.png',
-                                               title:get_counter_down_time_from_expire_epoch(map_item['expire'])
-                                               });
+                                               { icon: 'images/pushpin_images/pokemon/' + map_item['pokemon_id'] + '.png' ,
+                                                 title: get_counter_down_time_from_expire_epoch(map_item['expire']) });
       pushpins.push(pushpin)
     }
     layer.add(pushpins);
@@ -48,6 +46,7 @@ function add_pokemon_layer() {
     var pokemon_layer = get_pokemon_layer_from_map_items(map_manager.map_items)
     map_manager.map.layers.insert(pokemon_layer);
 }
+
 // 3. Add pokemon counter down refresh.
 function refresh_pokemon_layer() {
   // Prepare new layer
@@ -57,6 +56,7 @@ function refresh_pokemon_layer() {
   // Add new layer
   map_manager.map.layers.insert(pokemon_layer);
 }
+
 // 4. Connect with REST API
 function refresh_pokemon_data() {
   // Get boundary of current map view
@@ -85,4 +85,3 @@ function refresh_pokemon_data() {
 window.setInterval(refresh_pokemon_data, 1000);
 
 window.setInterval(refresh_pokemon_layer, 1000);
-
