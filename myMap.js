@@ -2,12 +2,7 @@ var map_manager = {
     "map" : null,
     "map_items" : []
 }
-function loadMapScenario() {
-    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        credentials: 'AtzhLS1Zy7h39DFuvbNJWCFq0j7GtzW2uQvuIdzwGWk0sBpXu95RQs8Rx2pMAHdX'
-    });
-    add_pokemon_layer();
-}
+
 //1 define pokemon data format,create mock pokemon data
 
 map_manager.map_items = [
@@ -18,6 +13,12 @@ map_manager.map_items = [
       "latitude" : 40.5260308,
     }
 ]
+function loadMapScenario() {
+    map_manager.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        credentials: 'AtzhLS1Zy7h39DFuvbNJWCFq0j7GtzW2uQvuIdzwGWk0sBpXu95RQs8Rx2pMAHdX'
+    });
+    add_pokemon_layer();
+}
 function get_counter_down_time_from_expire_epoch(epoch) {
   var now_time = new Date().getTime() / 1000;
   var time_left = epoch - now_time;   // unit: second
