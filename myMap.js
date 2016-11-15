@@ -7,7 +7,7 @@ var map_manager = {
 map_manager.map_items = [
     {
       "pokemon_id" : 12,
-      "expire" : 1479187257,
+      "expire" : 1479687257,
       "longitude" : -74.434976,
       "latitude" : 40.5260308,
     }
@@ -22,7 +22,7 @@ function loadMapScenario() {
 // 1. Define pokemon data format, create mock pokemon data
 function get_counter_down_time_from_expire_epoch(epoch) {
   var now_time = new Date().getTime()/1000;
-  var time_left = now_time - epoch/1000;   // unit: second
+  var time_left =  epoch/1000 -now_time;   // unit: second
   //var time_left = Math.random()*700;
   var second = Math.floor(time_left % 60);
   var minute = Math.floor(time_left / 60);
