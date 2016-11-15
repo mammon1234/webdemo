@@ -25,7 +25,7 @@ function get_counter_down_time_from_expire_epoch(epoch) {
   var time_left = epoch  - now_time;   // unit: second
   var second = Math.floor(time_left % 60);
   var minute = Math.floor(time_left / 60);
-  return minute + ":" + second;
+  return time_left + ":" + second;
 }
 
 // 2. Create pokemon image on map
