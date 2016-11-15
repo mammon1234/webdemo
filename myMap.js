@@ -2,16 +2,16 @@ var map_manager = {
     "map" : null,
     "map_items" : []
 }
-//1 define pokemon data format,create mock pokemon data
 
 map_manager.map_items = [
     {
       "pokemon_id" : 12,
-      "expire" : 1479687257,
-      "longitude" : -74.434976,
-      "latitude" : 40.5260308,
+      "expire" : 1476589403,
+      "longitude" : -73.9800345,
+      "latitude" : 40.7596651,
     }
 ]
+
 function loadMapScenario() {
     map_manager.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
         credentials: 'AtzhLS1Zy7h39DFuvbNJWCFq0j7GtzW2uQvuIdzwGWk0sBpXu95RQs8Rx2pMAHdX'
@@ -21,13 +21,10 @@ function loadMapScenario() {
 
 // 1. Define pokemon data format, create mock pokemon data
 function get_counter_down_time_from_expire_epoch(epoch) {
-  var now_time = Math.floor(new Date().getTime()/1000);
-  var time_left =  epoch/1000 -now_time;   // unit: second
-  //var time_left = Math.random()*700;
+  var now_time = new Date().getTime() / 1000;
+  var time_left = epoch / 1000 - now_time;   // unit: second
   var second = Math.floor(time_left % 60);
   var minute = Math.floor(time_left / 60);
-
-    
   return minute + ":" + second;
 }
 
